@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 const lighterBlue = 0xFFE4FDFF;
@@ -13,7 +15,19 @@ const lightPurple = 0xFFEBE9FD;
 const medPurple = 0xFFD1CFE2;
 
 void main() {
-  runApp(const MaterialApp(home: InvestPage()));
+  // runApp(const MaterialApp(home: HomePage()));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomePage(),
+    );
+  }
 }
 
 class HomePage extends StatelessWidget {
@@ -121,19 +135,28 @@ class HomePage extends StatelessWidget {
               color: const Color(medBlue),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Image(
+                children: [
+                  FlatButton(child: Image(
                     image: AssetImage('assets/images/invest.png'),
                     height: 50,
-                    width: 50),
-                  Image(
+                    width: 50,),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const InvestPage()));
+                    },),
+
+                    FlatButton(child: Image(
                     image: AssetImage('assets/images/home.png'),
                     height: 50,
                     width: 50),
-                  Image(
-                  image: AssetImage('assets/images/faq.png'),
-                  height: 50,
-                  width: 50),
+                    onPressed: () {},),
+
+                  FlatButton(child: Image(
+                    image: AssetImage('assets/images/faq.png'),
+                    height: 50,
+                    width: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FaqPage()));
+                    },),
                 ],
               ),
             )
@@ -253,19 +276,28 @@ class FaqPage extends StatelessWidget {
               color: const Color(medPink),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Image(
+                children: [
+                  FlatButton(child: Image(
                     image: AssetImage('assets/images/invest.png'),
                     height: 50,
-                    width: 50),
-                  Image(
+                    width: 50,),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const InvestPage()));
+                    },),
+
+                  FlatButton(child: Image(
                     image: AssetImage('assets/images/home.png'),
                     height: 50,
                     width: 50),
-                  Image(
-                  image: AssetImage('assets/images/faq.png'),
-                  height: 50,
-                  width: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                    },),
+
+                  FlatButton(child: Image(
+                    image: AssetImage('assets/images/faq.png'),
+                    height: 50,
+                    width: 50),
+                    onPressed: () {},),
                 ],
               ),
             )
@@ -378,7 +410,7 @@ class InvestPage extends StatelessWidget {
               ),
             ),
 
-            // Holdings
+            // Holdings Stocks
             Container(
               height: MediaQuery.of(context).size.height * 0.32,
               color: const Color(lightPurple),
@@ -399,19 +431,28 @@ class InvestPage extends StatelessWidget {
               color: const Color(medPurple),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Image(
+                children: [
+                  FlatButton(child: Image(
                     image: AssetImage('assets/images/invest.png'),
                     height: 50,
                     width: 50),
-                  Image(
+                    onPressed: () {},),
+
+                    FlatButton(child: Image(
                     image: AssetImage('assets/images/home.png'),
                     height: 50,
                     width: 50),
-                  Image(
-                  image: AssetImage('assets/images/faq.png'),
-                  height: 50,
-                  width: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                    },),
+
+                  FlatButton(child: Image(
+                    image: AssetImage('assets/images/faq.png'),
+                    height: 50,
+                    width: 50),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const FaqPage()));
+                    },),
                 ],
               ),
             )
