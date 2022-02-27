@@ -1,115 +1,421 @@
 import 'package:flutter/material.dart';
 
+const lighterBlue = 0xFFE4FDFF;
+const lightBlue = 0xFFDBEFF0;
+const medBlue = 0xFF9AD9DB;
+
+const lighterPink = 0xFFFDF3F6;
+const lightPink = 0xFFFBE9ED;
+const medPink = 0xFFFFCCD8;
+
+const lighterPurple = 0xFFDAE0FF;
+const lightPurple = 0xFFEBE9FD;
+const medPurple = 0xFFD1CFE2;
+
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(home: InvestPage()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({ Key? key }) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Main Body
+            Container(
+              height: MediaQuery.of(context).size.height * 0.9,
+              color: const Color(lightBlue),
+              child: Column(
+                children: [
+                  // Row 0 -- PullDown Bar
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                    color: Color.fromARGB(255, 159, 182, 194),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Image(
+                        image: AssetImage("assets/images/dropdown.png"),
+                        height: 30,
+                        width: 30,),
+                    ],)
+                  ),
+
+                  // Row 1 -- Coins + Settings
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Coin Compartment
+                      Container(
+                        padding: EdgeInsets.all(10.0),
+                        margin: EdgeInsets.all(10.0),
+                        color: Color(medBlue),
+                        child: Row(
+                          children: const[
+                            Text("149", style: TextStyle(fontSize: 26)),
+                            Image(
+                              image: AssetImage("assets/images/coin.png"),
+                              height: 35,
+                              width: 35)
+                          ]),
+                      ),
+
+                      // Settings icon
+                      Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: const Image(
+                          image: AssetImage("assets/images/settings.png"),
+                          height: 50,
+                          width: 50,)
+                      )
+                    ],
+                  ),
+
+                  // Row 2 -- Arrow + Pie Chart
+                  Row(
+                    children: [
+                      // Arrow Icon
+                      Container(
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          size: 35)
+                      ),
+
+                      // Pie Chart
+                      Container(
+                        child: const Image(
+                          image: AssetImage("assets/images/expense_pie_chart.png"),
+                          height: 300),
+                      )
+                  ],),
+
+                  // Row 3 -- Current Balance
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    color: Color(lighterBlue),
+                    child: Column(
+                      children: const [
+                        Text("Current Balance:", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
+                        Text("SGD 3600", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),)
+                      ]),
+                  ),
+
+                  // Row 4 -- Progress Bar
+                  Container(
+                    margin: EdgeInsets.fromLTRB(10.0,30.0,10.0,0),
+                    child: const Image(
+                      image: AssetImage("assets/images/progBar.png")),
+                  )
+                ]),
+            ),
+
+            // Navigation Bar
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              color: const Color(medBlue),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Image(
+                    image: AssetImage('assets/images/invest.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                    image: AssetImage('assets/images/home.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                  image: AssetImage('assets/images/faq.png'),
+                  height: 50,
+                  width: 50),
+                ],
+              ),
+            )
+        ],)
+      )
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class FaqPage extends StatelessWidget {
+  const FaqPage({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Main Body
+            Container(
+              height: MediaQuery.of(context).size.height * 0.9,
+              color: const Color(lightPink),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      // FAQ1 -- Commonly Asked Questions
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(lighterPink),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 15.0,
+                              offset: Offset(0.0, 0.75)
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(lighterPink),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(20))
+                        ),
+                        padding: EdgeInsets.fromLTRB(20.0,40.0,20.0,40.0),
+                        margin: EdgeInsets.fromLTRB(20.0,40.0,20.0,0.0),
+                        child: const Text("Commonly Asked Questions",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),),
+                      ),
+
+                      // FAQ2 -- Compounding Interest Calculator
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(lighterPink),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 15.0,
+                              offset: Offset(0.0, 0.75)
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(lighterPink),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(20))
+                        ),
+                        padding: EdgeInsets.fromLTRB(20.0,40.0,20.0,40.0),
+                        margin: EdgeInsets.fromLTRB(20.0,40.0,20.0,0.0),
+                        child: const Text("Compounding Interest Calculator",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),),
+                      ),
+
+                      // FAQ3 -- Contact Us
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Color(lighterPink),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 15.0,
+                              offset: Offset(0.0, 0.75)
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(lighterPink),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(20))
+                        ),
+                        width: 325,
+                        padding: EdgeInsets.fromLTRB(20.0,40.0,20.0,40.0),
+                        margin: EdgeInsets.fromLTRB(20.0,40.0,20.0,0.0),
+                        child: const Text("Contact Us",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),),
+                      )
+                    ]),
+                ],)
+
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+
+            // Navigation Bar
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              color: const Color(medPink),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Image(
+                    image: AssetImage('assets/images/invest.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                    image: AssetImage('assets/images/home.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                  image: AssetImage('assets/images/faq.png'),
+                  height: 50,
+                  width: 50),
+                ],
+              ),
+            )
+          ]),)
+    );
+  }
+}
+
+
+class InvestPage extends StatelessWidget {
+  const InvestPage({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Holdings Overview
+            Container(
+              height: MediaQuery.of(context).size.height * 0.3,
+              color: const Color(medPurple),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Image(
+                    image: AssetImage('assets/images/holdingsOver.png'),
+                    width: 360)
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+            // Trade Buttons
+            Container(
+              height: MediaQuery.of(context).size.height * 0.15,
+              color: const Color(lightPurple),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // BCIP
+                  Container(
+                        decoration: BoxDecoration(
+                          color: Color(lighterPurple),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 15.0,
+                              offset: Offset(0.0, 0.75)
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(lighterPurple),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10))
+                        ),
+                        padding: EdgeInsets.fromLTRB(10.0,20.0,10.0,20.0),
+                        margin: EdgeInsets.fromLTRB(10.0,20.0,10.0,20.0),
+                        child: const Text("Blue Chip Investment Plan",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),),
+                      ),
+
+                  // Buy / Sell
+                  Container(
+                    alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Color(lighterPurple),
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 15.0,
+                              offset: Offset(0.0, 0.75)
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(lighterPurple),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10))
+                        ),
+                        padding: EdgeInsets.fromLTRB(10.0,20.0,10.0,20.0),
+                        margin: EdgeInsets.fromLTRB(10.0,30.0,10.0,30.0),
+                        width: 160,
+                        height: 80,
+                        child: const Text("Buy / Sell",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline
+                        ),),
+                      ),
+                ],
+              ),
+            ),
+
+            // Holdings
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              color: const Color(lightPurple),
+              padding: EdgeInsets.fromLTRB(10.0,10.0,10.0,0.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  Text("Holdings",
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),)
+                ],
+              ),
+            ),
+
+            // Holdings
+            Container(
+              height: MediaQuery.of(context).size.height * 0.32,
+              color: const Color(lightPurple),
+              padding: EdgeInsets.all(5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Image(
+                    image: AssetImage("assets/images/stocksEtf.png"))
+                ],
+              ),
+            ),
+            
+
+            // Navigation Bar
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              color: const Color(medPurple),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Image(
+                    image: AssetImage('assets/images/invest.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                    image: AssetImage('assets/images/home.png'),
+                    height: 50,
+                    width: 50),
+                  Image(
+                  image: AssetImage('assets/images/faq.png'),
+                  height: 50,
+                  width: 50),
+                ],
+              ),
+            )
+          ]),)
     );
   }
 }
